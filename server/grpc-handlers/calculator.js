@@ -1,3 +1,5 @@
+const grpc = require("grpc");
+
 /* --------------------------------- Uniary --------------------------------- */
 function sumRPC(call, callback) {
   console.log("Inside sumRPC call");
@@ -83,4 +85,31 @@ function maxRPC(call, callback) {
   });
 }
 
-module.exports = { sumRPC, primeNumberDecomposition, avgRPC, maxRPC };
+/* ------------------ demostrate errors on recieving negative numbers ------------------ */
+
+function squareRoot(call, callback) {
+  let num = call.request.num;
+  let squareRootNum;
+  if (num >= 0) {
+    squareRootNum = Math.sqrt(num);
+
+    let payload = {
+      result: squareRootNum,
+    };
+
+    callback(null, payload);
+  } else {
+    callback({
+      code: grpc.status.INVALID_ARGUMENT,
+      message: "negative numbers are not allowed",
+    });
+  }
+}
+
+module.exports = {
+  sumRPC,
+  primeNumberDecomposition,
+  avgRPC,
+  maxRPC,
+  squareRoot,
+};

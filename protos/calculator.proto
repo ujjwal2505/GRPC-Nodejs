@@ -38,6 +38,14 @@ message MaxResponse{
     int32 result=1; 
 }
 
+message SquareRootRequest{
+    int32 num=1; 
+}
+
+message SquareRootResponse{
+    double result=1; 
+}
+
 service CalculatorService {
     //unary
     rpc sum (SumRequest) returns (SumResponse) {}
@@ -49,4 +57,7 @@ service CalculatorService {
 
     //bidi streaming
     rpc max(stream MaxRequest) returns (stream MaxResponse) {}
+
+    //error - on negative gives error
+    rpc squareRoot(SquareRootRequest) returns (SquareRootResponse) {}
 }

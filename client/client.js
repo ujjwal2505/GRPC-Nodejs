@@ -11,8 +11,11 @@ function joinName(client) {
   };
   console.log("request", request);
   client.greet(request, (error, response) => {
-    if (!error) return console.log("repsonse of api : ", response);
-    return console.error(error);
+    if (!error) {
+      console.log("repsonse of api : ", response);
+    } else {
+      console.error(error);
+    }
   });
 }
 
@@ -218,6 +221,22 @@ async function callMax(client) {
   call.end();
 }
 
+function callSqaureRoot(client) {
+  let req = {
+    num: 25,
+  };
+
+  let deadline = new Date(Date.now() + 10);
+
+  client.squareRoot(req, { deadline }, (error, response) => {
+    if (!error) {
+      console.log(`Square root of ${req.num} is ${response.result}`);
+    } else {
+      console.log(error);
+    }
+  });
+}
+
 function main() {
   /* ----------------------------- Greeting client ---------------------------- */
   const greetPackageDefiniton = LoadGreetPackageDefiniton();
@@ -240,7 +259,8 @@ function main() {
   // calculateSum(client);
   // callPrimeNumberDecomposition(client);
   // calculateAvg(client);
-  callMax(client);
+  // callMax(client);
+  callSqaureRoot(client);
 }
 
 main();

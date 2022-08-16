@@ -12,7 +12,7 @@ function LoadGreetPackageDefiniton() {
     oneofs: true,
   });
 
-  return grpc.loadPackageDefinition(protoDefinition).greet; //.calculator coincides with package name in protoFile
+  return grpc.loadPackageDefinition(protoDefinition).greet; //.greet coincides with package name in protoFile
 }
 
 module.exports = LoadGreetPackageDefiniton;

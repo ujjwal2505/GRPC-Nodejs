@@ -9,6 +9,7 @@ const {
   primeNumberDecomposition,
   avgRPC,
   maxRPC,
+  squareRoot,
 } = require("./calculator");
 
 module.exports = {
@@ -20,4 +21,5 @@ module.exports = {
   primeNumberDecomposition: primeNumberDecomposition,
   avg: avgRPC,
   max: maxRPC,
+  squareRoot: squareRoot,
 };
